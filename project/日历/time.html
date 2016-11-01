@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: url("../../images/xxx.jpg") no-repeat;
+        }
+        .clock{
+            width: 450px;
+            height: 450px;
+            border: 6px dashed #2dacb9;
+            border-radius: 50%;
+            /*margin: 10px;*/
+            /*background: url(images/1.jpg) no-repeat;*/
+            position:relative;
+            overflow: hidden;
+        }
+        .clock div{
+            width: 100%;
+            height: 100%;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        .h{
+            background: url(images/hour.png) no-repeat center center;
+        }
+        .m{
+            background: url(images/minute.png) no-repeat center center;
+        }
+        .s{
+            background: url(images/second.png) no-repeat center center;
+        }
+        .box{
+            width: 150px;
+            height: 180px;
+            background: rgba(0, 0, 0, 0.5);
+            margin:200px 800px;
+            text-align: center;
+            position: absolute;
+            top:0;
+            left:10px;
+        }
+        .box p{
+            line-height: 60px;
+            font-size: 12px;
+            color: #fff;
+        }
+        .box span{
+            display: block;
+            width: 75px;
+            height: 75px;
+            margin: 0 auto;
+            font-size: 50px;
+            line-height: 75px;
+            background: #2dacb9;
+            color:#000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var h = document.getElementById("h");
+            var m = document.getElementById("m");
+            var s = document.getElementById("s");
+            setInterval(function(){
+                var date = new Date();
+                var ms = date.getMilliseconds();//得到现在的毫秒
+                var sec = date.getSeconds() + ms/1000;//得到秒和过去的秒
+                var min = date.getMinutes()+sec/60;
+                var hour = date.getHours()%12+min/60;
+//                旋转角度
+                s.style.webkitTransform = "rotate("+sec*6+"deg)";
+                m.style.webkitTransform = "rotate("+min*6+"deg)";
+                h.style.webkitTransform = "rotate("+hour*30+"deg)";
+            },10);
+
+
+            var box = document.getElementById("box");
+            var boys = box.children;
+            //日期函数
+            var date = new Date();
+            var day = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+            boys[0].innerHTML = date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日"+" "+day[date.getDay()];
+            boys[1].innerHTML = date.getDate();
+
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <p></p>
+    <span></span>
+</div>
+<div class="clock">
+    <div class="h" id="h"></div>
+    <div class="m" id="m"></div>
+    <div class="s" id="s"></div>
+</div>
+</body>
+</html>

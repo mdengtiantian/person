@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url(images/00.jpg)no-repeat top center;
+        }
+        .box {
+            height: 150px;
+            background: rgba(255, 255, 255, .3);
+            text-align: center;
+            padding-top: 50px;
+        }
+        .box img {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var dem0 = document.getElementById("dem0");
+            var dem1 = document.getElementById("dem1");
+            var dem2 = document.getElementById("dem2");
+            dem0.onmouseover = function () {
+                document.body.style.backgroundImage = "url(images/00.jpg)";
+            }
+            dem1.onmouseover = function () {
+                document.body.style.backgroundImage = "url(images/11.jpg)";
+            }
+            dem2.onmouseover = function () {
+                document.body.style.backgroundImage = "url(images/22.jpg)";
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <img src="images/00.jpg" alt="" width="150" id="dem0"/>
+    <img src="images/11.jpg" alt="" width="150" id="dem1"/>
+    <img src="images/22.jpg" alt="" width="150" id="dem2"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: url("../../images/x.jpg") no-repeat;
+        }
+        .box{
+            width: 610px;
+            height: auto;
+            border: 1px solid #2dacb9;
+            padding:30px 10px;
+            margin:100px auto;
+            color:#fff;
+        }
+        span{
+            background: #2c3569;
+            border-radius: 3px;
+            font-size: 20px;
+            border: 1px solid #fff;
+        }
+        textarea{
+            width: 450px;
+            resize: none;/*防止用户拖动*/
+            font-size: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color:#fff;
+            margin-left: 10px;
+        }
+        button{
+            background: #2c3569;
+            border-radius: 3px;
+            font-size: 20px;
+            color:#fff;
+        }
+        .box li {
+            width: 450px;
+            line-height: 30px;
+            border-bottom: 1px solid #2dacb9;
+            margin-left: 97px;
+            font-size: 20px;
+            color:#fff;
+        }
+        .box li a{
+            text-decoration:none;
+            float: right;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var btn = document.getElementsByTagName("button")[0];
+            var txt = document.getElementsByTagName("textarea")[0];
+            var ul = document.createElement("ul");//创建ul
+            btn.parentNode.appendChild(ul);//添加到box
+            btn.onclick = function () {
+                if(txt.value==""){
+                    alert("输入不能为空");
+                    return false;//终止函数执行
+                }
+                var newli = document.createElement("li");//创建li
+                newli.innerHTML = txt.value + '<a href="javascript:;">删除</a>'; //表单值给lis
+                txt.value = "";//textarea为空
+                var lis = ul.children;
+                if(lis.length<0){//第一次发布
+                    ul.appendChild(newli);//添加到ul
+                }
+                else{
+                    ul.insertBefore(newli,lis[0]);//添加到ul的最前面
+                }
+
+                var as = document.getElementsByTagName("a");
+                for(var i=0; i<as.length;i++){
+                    as[i].onclick = function(){
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <span>消息发布:</span><textarea name="" id="" cols="30" rows="10"></textarea> <button>发布</button>
+</div>
+</body>
+</html>

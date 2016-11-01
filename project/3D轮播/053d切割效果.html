@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background: url("../../images/xx.jpg") no-repeat;
+            -webkit-background-size: 100%;
+            background-size: 100%;
+        }
+        .cut{
+            width: 560px;
+            height: 300px;
+            margin:100px auto;
+            background: red;
+            position:relative;
+        }
+        .cut ul li{
+            width: 112px;
+            height: 100%;
+            background: #000;
+            position:absolute;
+            transform-style:preserve-3d;
+            transition:all 1s;
+        }
+        .cut ul li:hover{
+            -moz-transform: rotateX(90deg);
+            -ms-transform: rotateX(90deg);
+            -o-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+        }
+        .cut ul li div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .cut ul li div:nth-of-type(1){
+            background: url("images/1.png") no-repeat;
+            transform: rotateX(0deg) translateZ(150px);
+        }
+        .cut ul li div:nth-of-type(2){
+            background: url("images/2.png") no-repeat;
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        .cut ul li div:nth-of-type(3){
+            background: url("images/3.png") no-repeat;
+            transform: rotateX(-180deg) translateZ(150px);
+        }
+        .cut ul li div:nth-of-type(4){
+            background: url("images/4.png") no-repeat;
+            transform: rotateX(-270deg) translateZ(150px);
+        }
+        a{
+            text-decoration:none;/* 清除下划线*/
+            position:absolute;
+            top:50%;
+            margin-top:-30px;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height:60px;
+            color: #fff;
+            font-size:40px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .rightBtn{
+            right:0;
+        }
+
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function(){
+            //让i平铺
+            $('li').each(function(index,ele){
+                $(ele).css({"left":index*560/5,"transitionDelay":index*0.3 + "s"})
+                $(ele).children('div').css({"backgroundPosition":-560/5*index +"px"})
+            })
+            //点击事件
+            var num = 0;
+            $('.rightBtn').on("click",function(){
+                num++;
+                $('li').css("transform","rotateX("+ num*90 +"deg)")
+            });
+            $('.leftBtn').on("click",function(){
+                num--;
+                $('li').css("transform","rotateX("+ num*90 +"deg)")
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="cut">
+        <ul>
+            <li>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </li>
+            <li>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </li>
+        </ul>
+        <a href="javascript:;" class="leftBtn">&lt;</a>
+        <a href="javascript:;" class="rightBtn">&gt;</a>
+    </div>
+</body>
+</html>
